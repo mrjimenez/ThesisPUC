@@ -54,10 +54,10 @@ ifeq ($(MAKECMDGOALS),depend)
 
 SRC     := $(shell egrep -l '^[^%]*\\begin\{document\}' *.tex)
 
-#CLASSES := $(shell perl -ne '($$_)=/^[^%]*\\documentclass[^{]*\{(.*?)\}/;@_=split /,/;foreach $$b (@_) {print "$$b.cls "}' $(SRC))
+CLASSES := $(shell perl -ne '($$_)=/^[^%]*\\documentclass[^{]*\{(.*?)\}/;@_=split /,/;foreach $$b (@_) {print "$$b.cls "}' $(SRC))
 #CLASSES := $(sort $(foreach class,$(CLASSES), $(shell if [ -f $(class) ] ; then echo $(class) ; else echo class $(class) not in folder >&2 ; fi ;) ) )
 
-#STYLES  := $(shell perl -ne '($$_)=/^[^%]*\\usepackage[^{]*\{(.*?)\}/;@_=split /,/;foreach $$b (@_) {print "$$b.sty "}' $(SRC)) $(shell perl -ne '($$_)=/^[^%]*\\RequirePackage[^{]*\{(.*?)\}/;@_=split /,/;foreach $$b (@_) {print "$$b.sty "}' $(CLASSES))
+STYLES  := $(shell perl -ne '($$_)=/^[^%]*\\usepackage[^{]*\{(.*?)\}/;@_=split /,/;foreach $$b (@_) {print "$$b.sty "}' $(SRC)) $(shell perl -ne '($$_)=/^[^%]*\\RequirePackage[^{]*\{(.*?)\}/;@_=split /,/;foreach $$b (@_) {print "$$b.sty "}' $(CLASSES))
 #STYLES  := $(sort $(foreach style,$(STYLES), $(shell if [ -f $(style) ] ; then echo $(style) ; else echo style $(style) not in folder >&2 ; fi ;) ) )
 
 BIBFILE := $(shell perl -ne '($$_)=/^[^%]*\\bibliography\{(.*?)\}/;@_=split /,/;foreach $$b (@_) {print "$$b.bib "}' $(SRC))
@@ -233,22 +233,22 @@ show-depend :
 	  @echo "# images    : " $(EPSPICS)
 
 depend :
-	  #@rm -f Makefile.bak*
-	  #@csplit Makefile -s -f Makefile.bak "/^\# BEGIN DEPENDENCIES/2" "/^\# END DEPENDENCIES/-1"
-	  #@rm -f Makefile.bak01
-	  #@echo > Makefile.bak01
-	  #@echo "SRC       := $(SRC)      "  > Makefile.bak01
-	  #@echo "CLASSES   := $(CLASSES)  " >> Makefile.bak01
-	  #@echo "STYLES    := $(STYLES)   " >> Makefile.bak01
-	  #@echo "INPUTS    := $(INPUTS)   " >> Makefile.bak01
-	  #@echo "BIBFILE   := $(BIBFILE)  " >> Makefile.bak01
-	  #@echo "BIBSTYLES := $(BIBSTYLES)" >> Makefile.bak01
-	  #@echo "INPUTENCS := $(INPUTENCS)" >> Makefile.bak01
-	  #@echo "EPSPICS   := $(EPSPICS)  " >> Makefile.bak01
-	  #@cat Makefile.bak00 Makefile.bak01 Makefile.bak02 > Makefile.bak
-	  #@rm -f Makefile.bak0*
+	  @rm -f Makefile.bak*
+	  @csplit Makefile -s -f Makefile.bak "/^\# BEGIN DEPENDENCIES/2" "/^\# END DEPENDENCIES/-1"
+	  @rm -f Makefile.bak01
+	  @echo > Makefile.bak01
+	  @echo "SRC       := $(SRC)      "  > Makefile.bak01
+	  @echo "CLASSES   := $(CLASSES)  " >> Makefile.bak01
+	  @echo "STYLES    := $(STYLES)   " >> Makefile.bak01
+	  @echo "INPUTS    := $(INPUTS)   " >> Makefile.bak01
+	  @echo "BIBFILE   := $(BIBFILE)  " >> Makefile.bak01
+	  @echo "BIBSTYLES := $(BIBSTYLES)" >> Makefile.bak01
+	  @echo "INPUTENCS := $(INPUTENCS)" >> Makefile.bak01
+	  @echo "EPSPICS   := $(EPSPICS)  " >> Makefile.bak01
+	  @cat Makefile.bak00 Makefile.bak01 Makefile.bak02 > Makefile.bak
+	  @rm -f Makefile.bak0*
 	  #@mv Makefile.bak Makefile
-	  @make show-depend
+	  @make -f Makefile.bak show-depend
 
 
 ###################### File generation ############################
