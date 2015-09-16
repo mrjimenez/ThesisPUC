@@ -2,6 +2,9 @@
 *~
 .*.sw?
 
+# We generate pdfs and have no pdf images, so don't track them.
+*.pdf
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof

@@ -11,16 +11,16 @@
 
 ######################### Programs ################################
 
-LATEX	    = latex -src-specials -interaction=nonstopmode
-BIBTEX	  = bibtex
+LATEX     = latex -src-specials -interaction=nonstopmode
+BIBTEX    = bibtex
 MAKEINDEX = makeindex
-XDVI	    = xdvi -gamma 4
-DVIPS	    = dvips
+XDVI      = xdvi -gamma 4
+DVIPS     = dvips
 DVIPDF    = dvipdfm
-L2H	      = latex2html -split 0
-TTH	      = tth #-a -e2
-GH	      = gv
-XPDF	    = xpdf
+L2H       = latex2html -split 0
+TTH       = tth #-a -e2
+GH        = gv
+XPDF      = okular
 RM        = rm -f
 
 
@@ -28,14 +28,14 @@ RM        = rm -f
 
 # BEGIN DEPENDENCIES
 
-SRC       := Exple.tex Exple_uk.tex ThesisPUC.tex      
-CLASSES   := ThesisPUC.cls ThesisPUC_uk.cls  
-STYLES    := atbeginend.sty chngpage.sty fancyhdr.sty indentfirst.sty inputenc.sty setspace.sty subfigure.sty titlesec.sty tocloft.sty   
-INPUTS    :=    
-BIBFILE   := Exple.bib  
-BIBSTYLES := ThesisPUC.bst ThesisPUC_uk.bst
-INPUTENCS := noaccent.def
-EPSPICS   := ctor4_none.eps puc.ps  
+SRC       := Exple.tex Exple_uk.tex ThesisPUC.tex
+CLASSES   :=
+STYLES    :=
+INPUTS    :=
+BIBFILE   := Exple.bib
+BIBSTYLES :=
+INPUTENCS :=
+EPSPICS   := ctor4_none.eps
 
 # END DEPENDENCIES
 
@@ -54,23 +54,23 @@ ifeq ($(MAKECMDGOALS),depend)
 
 SRC     := $(shell egrep -l '^[^%]*\\begin\{document\}' *.tex)
 
-CLASSES := $(shell perl -ne '($$_)=/^[^%]*\\documentclass[^{]*\{(.*?)\}/;@_=split /,/;foreach $$b (@_) {print "$$b.cls "}' $(SRC))
-CLASSES := $(sort $(foreach class,$(CLASSES), $(shell if [ -f $(class) ] ; then echo $(class) ; else echo class $(class) not in folder >&2 ; fi ;) ) )
+#CLASSES := $(shell perl -ne '($$_)=/^[^%]*\\documentclass[^{]*\{(.*?)\}/;@_=split /,/;foreach $$b (@_) {print "$$b.cls "}' $(SRC))
+#CLASSES := $(sort $(foreach class,$(CLASSES), $(shell if [ -f $(class) ] ; then echo $(class) ; else echo class $(class) not in folder >&2 ; fi ;) ) )
 
-STYLES  := $(shell perl -ne '($$_)=/^[^%]*\\usepackage[^{]*\{(.*?)\}/;@_=split /,/;foreach $$b (@_) {print "$$b.sty "}' $(SRC)) $(shell perl -ne '($$_)=/^[^%]*\\RequirePackage[^{]*\{(.*?)\}/;@_=split /,/;foreach $$b (@_) {print "$$b.sty "}' $(CLASSES))
-STYLES  := $(sort $(foreach style,$(STYLES), $(shell if [ -f $(style) ] ; then echo $(style) ; else echo style $(style) not in folder >&2 ; fi ;) ) )
+#STYLES  := $(shell perl -ne '($$_)=/^[^%]*\\usepackage[^{]*\{(.*?)\}/;@_=split /,/;foreach $$b (@_) {print "$$b.sty "}' $(SRC)) $(shell perl -ne '($$_)=/^[^%]*\\RequirePackage[^{]*\{(.*?)\}/;@_=split /,/;foreach $$b (@_) {print "$$b.sty "}' $(CLASSES))
+#STYLES  := $(sort $(foreach style,$(STYLES), $(shell if [ -f $(style) ] ; then echo $(style) ; else echo style $(style) not in folder >&2 ; fi ;) ) )
 
 BIBFILE := $(shell perl -ne '($$_)=/^[^%]*\\bibliography\{(.*?)\}/;@_=split /,/;foreach $$b (@_) {print "$$b.bib "}' $(SRC))
 BIBFILE := $(sort $(foreach bibfile,$(BIBFILE), $(shell if [ -f $(bibfile) ] ; then echo $(bibfile) ; else echo bibfile $(bibfile) not in folder >&2 ; fi ;) ) )
 
 BIBSTYLES := $(shell perl -ne '($$_)=/^[^%]*\\bibliographystyle[^{]*\{(.*?)\}/;@_=split /,/;foreach $$b (@_) {print "$$b.bst "}' $(SRC) $(INPUTS) $(CLASSES) $(STYLES))
-BIBSTYLES := $(sort $(foreach bibstyle,$(BIBSTYLES), $(shell if [ -f $(bibstyle) ] ; then echo $(bibstyle) ; else echo bibstyle $(bibstyle) not in folder >&2 ; fi ;) ) )
+#BIBSTYLES := $(sort $(foreach bibstyle,$(BIBSTYLES), $(shell if [ -f $(bibstyle) ] ; then echo $(bibstyle) ; else echo bibstyle $(bibstyle) not in folder >&2 ; fi ;) ) )
 
 INPUTS  := $(shell perl -ne '($$_)=/^[^%]*\\input\{(.*?)\}/;@_=split /,/;foreach $$b (@_) {print "$$b.tex "}' $(SRC) $(CLASSES) $(STYLES) $(BIBSTYLES) )
-INPUTS  := $(sort $(foreach input,$(INPUTS), $(shell if [ -f $(input) ] ; then echo $(input) ; else echo input file $(input) not in folder >&2 ; fi ;) ) )
+#INPUTS  := $(sort $(foreach input,$(INPUTS), $(shell if [ -f $(input) ] ; then echo $(input) ; else echo input file $(input) not in folder >&2 ; fi ;) ) )
 
 INPUTENCS := $(shell perl -ne '($$_)=/^[^%]*\\inputencoding\{(.*?)\}/;@_=split /,/;foreach $$b (@_) {print "$$b.def "}' $(SRC) $(CLASSES) $(STYLES) $(BIBSTYLES) )
-INPUTENCS := $(sort $(foreach inputenc,$(INPUTENCS), $(shell if [ -f $(inputenc) ] ; then echo $(inputenc) ; else echo inputenc $(inputenc) not in folder >&2 ; fi ;) ) )
+#INPUTENCS := $(sort $(foreach inputenc,$(INPUTENCS), $(shell if [ -f $(inputenc) ] ; then echo $(inputenc) ; else echo inputenc $(inputenc) not in folder >&2 ; fi ;) ) )
 
 EPSPICS := \
   $(shell perl -ne '($$_)=/^[^%]*\\includegraphics[^{}]*\{([^@\#]*?)\}/;@_=split /,/;foreach $$b (@_) {print "$$b "}' $(SRC) $(INPUTS) $(CLASSES) $(STYLES) $(BIBSTYLES) ) \
@@ -162,6 +162,7 @@ endef
 
 
 ####################### File Targets ##############################
+all :
 
 dvi	 : $(DVI)
 
@@ -180,7 +181,7 @@ tar  : $(TARNAME)
 
 ###################### default targets ############################
 
-all 	  :
+all :
 	make depend
 	@for i in $(DVI) ; do if egrep -q -i $(RERUN) $${i/.dvi/.log} ; then $(RM) $$i ; fi ; done ; true
 	make dvi
@@ -191,9 +192,8 @@ everything :
 	make dvi
 	@for i in $(PSF) $(PDF) $(HTML) $(HTM) ; do if test -r $$i ; then make $$i ; fi ; done ; true
 	make tar
-	make cvs
 
-.PHONY	: all everything depend warns stats show-depend clean dvi ps pdf htm html show showps showpdf tar cvs
+.PHONY	: all everything depend warns stats show-depend clean dvi ps pdf htm html show showps showpdf tar
 
 
 ##################### Programs Targets ############################
@@ -214,10 +214,6 @@ clean	:
   $(DVI:%.dvi=%.lof) $(DVI:%.dvi=%.lot) $(DVI:%.dvi=%.toc) \
   $(DVI:%.dvi=%.idx) $(DVI:%.dvi=%.ilg) $(DVI:%.dvi=%.ind)
 
-cvs :
-	cvs ci -m "backup $(shell date -u '+%A, %d %b %Y, %H:%M')"
-
-
 ####################### Info Targets ##############################
 
 warns	: $(SRC)
@@ -237,21 +233,21 @@ show-depend :
 	  @echo "# images    : " $(EPSPICS)
 
 depend :
-	  @rm -f Makefile.bak*
-	  @csplit Makefile -s -f Makefile.bak "/^\# BEGIN DEPENDENCIES/2" "/^\# END DEPENDENCIES/-1"
-	  @rm -f Makefile.bak01
-	  @echo > Makefile.bak01
-	  @echo "SRC       := $(SRC)      "  > Makefile.bak01
-	  @echo "CLASSES   := $(CLASSES)  " >> Makefile.bak01
-	  @echo "STYLES    := $(STYLES)   " >> Makefile.bak01
-	  @echo "INPUTS    := $(INPUTS)   " >> Makefile.bak01
-	  @echo "BIBFILE   := $(BIBFILE)  " >> Makefile.bak01
-	  @echo "BIBSTYLES := $(BIBSTYLES)" >> Makefile.bak01
-	  @echo "INPUTENCS := $(INPUTENCS)" >> Makefile.bak01
-	  @echo "EPSPICS   := $(EPSPICS)  " >> Makefile.bak01
-	  @cat Makefile.bak00 Makefile.bak01 Makefile.bak02 > Makefile.bak
-	  @rm -f Makefile.bak0*
-	  @mv Makefile.bak Makefile
+	  #@rm -f Makefile.bak*
+	  #@csplit Makefile -s -f Makefile.bak "/^\# BEGIN DEPENDENCIES/2" "/^\# END DEPENDENCIES/-1"
+	  #@rm -f Makefile.bak01
+	  #@echo > Makefile.bak01
+	  #@echo "SRC       := $(SRC)      "  > Makefile.bak01
+	  #@echo "CLASSES   := $(CLASSES)  " >> Makefile.bak01
+	  #@echo "STYLES    := $(STYLES)   " >> Makefile.bak01
+	  #@echo "INPUTS    := $(INPUTS)   " >> Makefile.bak01
+	  #@echo "BIBFILE   := $(BIBFILE)  " >> Makefile.bak01
+	  #@echo "BIBSTYLES := $(BIBSTYLES)" >> Makefile.bak01
+	  #@echo "INPUTENCS := $(INPUTENCS)" >> Makefile.bak01
+	  #@echo "EPSPICS   := $(EPSPICS)  " >> Makefile.bak01
+	  #@cat Makefile.bak00 Makefile.bak01 Makefile.bak02 > Makefile.bak
+	  #@rm -f Makefile.bak0*
+	  #@mv Makefile.bak Makefile
 	  @make show-depend
 
 
@@ -281,6 +277,6 @@ $(HTM)	:	%_htm : %.tex $(DEP) $(BIBFILE)
 	@$(L2H) -dir $@ $(SRC)
 	touch -r $< $@
 
-$(TARNAME) : $(SRC) $(DVI:%.dvi=%.bbl) $(DVI:%.dvi=%.pdf) $(CLASSES) $(STYLES) $(INPUTS) $(BIBFILE) $(BIBSTYLES) $(INPUTENCS) $(EPSPICS) Makefile figs/*.[^e][^p][^s]
+$(TARNAME) : $(SRC) $(DVI:%.dvi=%.pdf) $(CLASSES) $(STYLES) $(INPUTS) $(BIBFILE) $(BIBSTYLES) $(INPUTENCS) $(EPSPICS) Makefile *.[^e][^p][^s]
 	tar -C.. -c -v -z --exclude=CVS -f $@ $(foreach file,$^,$(DIRNAME)/$(file)) > /dev/null
 

@@ -3,7 +3,7 @@
 %%
 %% Any modified versions of this file must be renamed
 %% with new filenames distinct from ThesisPUC.cls.
-%% 
+%%
 %% ----------------------------------------------------------------------------
 %%
 %% Thomas Lewiner
@@ -11,7 +11,7 @@
 %%
 %% LaTeX document class for typesetting theses of the PUC
 %%
-%% Copyright (C) 
+%% Copyright (C)
 %%
 %% ----------------------------------------------------------------------------
 %%
@@ -36,14 +36,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\newcommand{\docdate}{}   % See the renewcommands below,
-\newcommand{\filedate}{}  % these contain the content;-))
+\newcommand{\docdate}{}  % See the renewcommands below,
+\newcommand{\filedate}{} % these contain the content;-))
 \newcommand{\fileversion}{}
 \renewcommand{\docdate}{2002/07/10}
 \renewcommand{\filedate}{2005/06/10}
 \renewcommand{\fileversion}{3.0}
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
-\ProvidesClass{ThesisPUC_uk}
+\ProvidesClass{ThesisPUC_uk}%
 [\filedate\space v\fileversion\space PUC thesis class (english)]
 
 
@@ -119,16 +119,16 @@
 
 % fonts and symbols
 \RequirePackage{amsfonts}
-\RequirePackage[latin1]{inputenc}
+\RequirePackage[utf8]{inputenc}
 
 % graphics inclusion (in particular the PUC logo)
-\RequirePackage[dvipdfm]{graphicx}
+\RequirePackage[dvipdfmx]{graphicx}
 
 % subfigure loaded here for spacing definition
 \RequirePackage[hang,tight,FIGBOTCAP,TABBOTCAP]{subfigure}
 
 % Section titles
-\RequirePackage[compact,clearempty]{titlesec}
+\RequirePackage[clearempty,compact]{titlesec}
 
 % table of contents
 \RequirePackage[subfigure]{tocloft}
@@ -155,7 +155,7 @@
 \RequirePackage{eso-pic}
 
 % hyperlink and pdf bookmarks
-\RequirePackage[backref,dvipdfm,colorlinks=false,bookmarksopen=true,breaklinks=true]{hyperref}
+\RequirePackage[backref,dvipdfmx,colorlinks=false,bookmarksopen=true,breaklinks=true]{hyperref}
 %linkcolor=blue,anchorcolor=black,citecolor=cyan,urlcolor=red,pagecolor=black,bookmarksnumbered=false,
 
 \selectlanguage{british}
@@ -306,42 +306,139 @@
 %
 % Section titles
 %
-\newcommand{\autolabel}[1]{\label{sec:#1}#1}
+\newcommand{\noaccent}[1]{%
+ \begingroup%
+  \inputencoding{noaccent}%
+  \renewcommand{\`}[1]{#1}%
+  \renewcommand{\'}[1]{#1}%
+  \renewcommand{\^}[1]{#1}%
+  \renewcommand{\~}[1]{#1}%
+  \renewcommand{\=}[1]{#1}%
+  \renewcommand{\.}[1]{#1}%
+  \renewcommand{\"}[1]{#1}%
+  \renewcommand{\c}[1]{#1}%
+  \renewcommand{\u}[1]{#1}%
+  \renewcommand{\v}[1]{#1}%
+  \renewcommand{\H}[1]{#1}%
+  \renewcommand{\c}[1]{#1}%
+  \renewcommand{\d}[1]{#1}%
+  \renewcommand{\b}[1]{#1}%
+  \renewcommand{\t}[1]{#1}%
+  \renewcommand{\aa}{a}%
+  \renewcommand{\AA}{A}%
+  \renewcommand{\o}{o}%
+  \renewcommand{\O}{o}%
+  \renewcommand{\l}{l}%
+  \renewcommand{\L}{L}%
+  \renewcommand{\i}{i}%
+  \renewcommand{\j}{j}%
+  \renewcommand{\oe}{oe}%
+  \renewcommand{\OE}{OE}%
+  \renewcommand{\ae}{ae}%
+  \renewcommand{\AE}{AE}%
+  \renewcommand{\mathrm}[1]{#1}%
+  \renewcommand{\mathit}[1]{#1}%
+  \renewcommand{\mathnormal}[1]{#1}%
+  \renewcommand{\mathcal}[1]{#1}%
+  \renewcommand{\mathfrak}[1]{#1}%
+  \renewcommand{\mathbb}[1]{#1}%
+  \renewcommand{\textrm}[1]{#1}%
+  \renewcommand{\textsf}[1]{#1}%
+  \renewcommand{\texttt}[1]{#1}%
+  \renewcommand{\textmd}[1]{#1}%
+  \renewcommand{\textbf}[1]{#1}%
+  \renewcommand{\textup}[1]{#1}%
+  \renewcommand{\textit}[1]{#1}%
+  \renewcommand{\textsl}[1]{#1}%
+  \renewcommand{\textsc}[1]{#1}%
+  \renewcommand{\emph}[1]{#1}%
+  \renewcommand{\textnormal}[1]{#1}%
+  \renewcommand{\rm}{}%
+  \renewcommand{\sf}{}%
+  \renewcommand{\tt}{}%
+  \renewcommand{\bf}{}%
+  \renewcommand{\it}{}%
+  \renewcommand{\sl}{}%
+  \renewcommand{\sc}{}%
+  \renewcommand{\bfseries}{}%
+  \renewcommand{\itshape}{}%
+  \renewcommand{\mdseries}{}%
+  \renewcommand{\rmfamily}{}%
+  \renewcommand{\scshape}{}%
+  \renewcommand{\sffamily}{}%
+  \renewcommand{\slshape}{}%
+  \renewcommand{\ttfamily}{}%
+  \renewcommand{\upshape}{}%
+  \renewcommand{\Large}[1]{#1}%
+  \renewcommand{\tiny}[1]{#1}%
+  \renewcommand{\scriptsize}[1]{#1}%
+  \renewcommand{\LARGE}[1]{#1}%
+  \renewcommand{\footnotesize}[1]{#1}%
+  \renewcommand{\small}[1]{#1}%
+  \renewcommand{\huge}[1]{#1}%
+  \renewcommand{\normalsize}[1]{#1}%
+  \renewcommand{\large}[1]{#1}%
+  \renewcommand{\Huge}[1]{#1}%
+  \renewcommand{\\}{}%
+  \renewcommand{\$}{}%
+  \renewcommand{\_}{}%
+  \renewcommand{\backslash}{}%
+  #1%
+ \endgroup%
+}
+
+%%
+%% Do not label \chapter{}, \section{}, etc.
+%% This will cause problems when there is math on the title.
+%%
+%\newcommand{\autolabel}[1]{\noaccent{\label{sec:#1}}#1}
+\newcommand{\autolabel}[1]{#1}
+
 \titleformat{name=\chapter}
    [display]
-   {\singlespacing\LARGE\arial\bfseries}
+   {\singlespacing\large\arial\bfseries}
    {\thechapter}
    {0pt}
    {\autolabel}
 \titleformat{name=\section}
-   {\penalty -5000\singlespacing\Large\arial\bfseries}
+   [display]
+   {\penalty -5000\singlespacing\normalsize\arial\bfseries}
    {\thesection}
-   {2\wordsep}
+   {0pt}
    {\autolabel}
+\titleformat{name=\section,numberless}
+   [display]
+   {\penalty -5000\singlespacing\normalsize\arial\bfseries}
+   {}
+   {0pt}
+   {}
 \titleformat{name=\subsection}
-   {\penalty -4000\singlespacing\large\arial\bfseries}
-   {(\alph{subsection})}
-   {2\wordsep}
+   [display]
+   {\penalty -4000\singlespacing\normalsize\arial\bfseries}
+   {\thesubsection}
+   {0pt}
    {\autolabel}
 \titleformat{name=\subsection,numberless}
-   {\penalty -4000\singlespacing\large\arial\bfseries}
+   [display]
+   {\penalty -4000\singlespacing\normalsize\arial\bfseries}
    {}
-   {2\wordsep}
+   {0pt}
    {}
 \titleformat{name=\subsubsection}
+   [display]
    {\penalty -3000\singlespacing\normalsize\arial\bfseries}
-   {}
-   {2\wordsep}
+   {\thesubsubsection}
+   {0pt}
    {\autolabel}
 \titleformat{name=\paragraph}
    [runin]
-   {\penalty -2000\singlespacing\normalsize\arial\bfseries\itshape}
+   {\singlespacing\normalsize\arial\bfseries}
    {2\wordsep}
    {}
    {}
 \titleformat{name=\subparagraph}
    [runin]
-   {\penalty -1000\singlespacing\normalsize\arial\itshape}
+   {\singlespacing\normalsize\arial\bfseries}
    {2\wordsep}
    {}
    {}
@@ -351,27 +448,31 @@
 %
 % page styles
 %
-\pagestyle{fancy}
-\fancyhf{} % delete current setting for header and footer
-\fancyfoot{}%
-\ifthenelse{\boolean{puc@twoside}}{%
-  \fancyhead[LE]{\slshape \nouppercase{\leftmark}}%
-  \fancyhead[RE]{\thepage}%
-  \fancyhead[LO]{\thepage}%
-  \fancyhead[RO]{\itshape \nouppercase{\rightmark}}%
-}{
-  \fancyhead[L]{\slshape \nouppercase{\leftmark}}%
-  \fancyhead[R]{\thepage}%
+\makeatletter%
+\newcommand{\puc@setpagestyle}{%
+ \pagestyle{fancy}%
+ \fancyhf{}% delete current setting for header and footer
+ \fancyfoot{}%
+  \ifthenelse{\boolean{puc@twoside}}{%
+   \fancyhead[LE]{\arial\footnotesize \nouppercase{\puc@title}}%
+   \fancyhead[RE]{\arial\footnotesize \thepage}%
+   \fancyhead[RO]{\arial\footnotesize \thepage}%
+   \fancyhead[LO]{\arial\footnotesize \nouppercase{\leftmark}}%
+  }{
+   \fancyhead[L]{\arial\slshape \nouppercase{\leftmark}}%
+   \fancyhead[R]{\thepage}%
+  }
+ \renewcommand{\headrulewidth}{0pt}%
 }
-\renewcommand{\headrulewidth}{0pt}
-\fancypagestyle{plain}{\fancyhead{} \fancyfoot{} \renewcommand{\headrulewidth}{0pt}}
+\fancypagestyle{empty}{\fancyhead{} \fancyfoot{} \renewcommand{\headrulewidth}{0pt}}%
+\fancypagestyle{plain}{\fancyhead{} \fancyfoot{} \renewcommand{\headrulewidth}{0pt}}%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % table of contents
 %
-\setcounter{tocdepth}{3}
+\setcounter{tocdepth}{1}
 \setcounter{lofdepth}{1}
 \setcounter{lotdepth}{1}
 \renewcommand{\cfttoctitlefont}{\large \arial \bfseries}
@@ -382,7 +483,7 @@
 \setlength{\cftbeforelottitleskip}{0pt}
 \renewcommand{\cftdot}{}
 \renewcommand{\cftsecfont}{}
-\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesecskip}{\parskip}
 \setlength{\cftbeforesubsecskip}{0pt}
 \setlength{\cftchapnumwidth}{1.9em}
 \setlength{\cftsecnumwidth}{2.5em}
@@ -404,33 +505,39 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
+% citations
+%
+\def\@cite#1#2{({#1\if@tempswa , #2\fi})}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
 % theorems environments
 %
-\renewcommand{\theequation}{\arabic{equation}}
-\newtheorem{definition}{Definition}
-\newtheorem{theorem}[definition]{Theorem}
-\newtheorem{proposition}[definition]{Proposition}
-\newtheorem{corollary}[definition]{Corollary}
-\newtheorem{lemma}[definition]{Lemma}
-\newenvironment{proof}[1][]{\par \noindent \textit{Proof#1}:\hspace*{1em}}{\hfill $\blacksquare$}
+\renewcommand{\theequation}{\thechapter-\arabic{equation}}
+%\newtheorem{definition}{Defini\c{c}\~{a}o}[chapter]
+%\newtheorem{theorem}[definition]{Teorema}
+%\newtheorem{proposition}[definition]{Proposi\c{c}\~{a}o}
+%\newtheorem{corollary}[definition]{Corol\'{a}rio}
+%\newenvironment{proof}{\par \noindent \textit{Prova}.}{\hfill $\blacksquare$}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % space in environment
 %
-\AfterBegin{itemize}{\addtolength{\itemsep}{-0.5em}}
-\renewcommand{\labelitemi}{--}
-\BeforeBegin{equation}{\vspace{-0.5em}}
-\BeforeEnd{equation}{\vspace{-0.5em}}
-\BeforeBegin{theorem}{\vspace{-0.4em}}
-\BeforeEnd{theorem}{\vspace{-0.2em}}
-\BeforeBegin{definition}{\vspace{-0.4em}}
-\BeforeEnd{definition}{\vspace{-0.2em}}
-\BeforeBegin{corollary}{\vspace{-0.4em}}
-\BeforeEnd{corollary}{\vspace{-0.2em}}
-\BeforeBegin{proposition}{\vspace{-0.4em}}
-\BeforeEnd{proposition}{\vspace{-0.2em}}
+%\AfterBegin{itemize}{\addtolength{\itemsep}{-0.5em}}
+%\renewcommand{\labelitemi}{--}
+%\BeforeBegin{equation}{\vspace{-0.5em}}
+%\BeforeEnd{equation}{\vspace{-0.5em}}
+%\BeforeBegin{theorem}{\vspace{-0.4em}}
+%\BeforeEnd{theorem}{\vspace{-0.2em}}
+%\BeforeBegin{definition}{\vspace{-0.4em}}
+%\BeforeEnd{definition}{\vspace{-0.2em}}
+%\BeforeBegin{corollary}{\vspace{-0.4em}}
+%\BeforeEnd{corollary}{\vspace{-0.2em}}
+%\BeforeBegin{proposition}{\vspace{-0.4em}}
+%\BeforeEnd{proposition}{\vspace{-0.2em}}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -483,6 +590,9 @@
 
 \newcommand{\puc@title}{}
 \renewcommand{\title}[1]{\renewcommand{\puc@title}{#1}}
+
+\newcommand{\puc@titleuk}{}
+\newcommand{\titleuk}[1]{\renewcommand{\puc@titleuk}{#1}}
 
 \newcommand{\puc@subtitle}{}
 \newcommand{\subtitle}[1]{\renewcommand{\puc@subtitle}{#1}}
@@ -548,12 +658,18 @@
 \newcommand{\puc@keywords}{}
 \newcommand{\keywords}[1]{\renewcommand{\puc@keywords}{#1}}
 
+\newcommand{\puc@keywordsuk}{}
+\newcommand{\keywordsuk}[1]{\renewcommand{\puc@keywordsuk}{#1}}
+
 \newcommand{\puc@abstract}{}
 \ifthenelse{\boolean{puc@twoside}}{%
   \newcommand{\abstract}[1]{\renewcommand{\puc@abstract}{#1}}%
 }{%
   \renewcommand{\abstract}[1]{\renewcommand{\puc@abstract}{#1}}%
 }
+
+\newcommand{\puc@abstractuk}{}
+\newcommand{\abstractuk}[1]{\renewcommand{\puc@abstractuk}{#1}}%
 
 \newcommand{\puc@tablesmode}{figtab}
 \newcommand{\tablesmode}[1]{\renewcommand{\puc@tablesmode}{#1}}
@@ -592,6 +708,7 @@
 \newcommand{\coorientadorIIIR}[1]{\coadviserIIIR{#1}}
 \newcommand{\coorientadorIIIInst}[1]{\coadviserIIIInst{#1}}
 \newcommand{\titulo}[1]{\title{#1}}
+\newcommand{\titulouk}[1]{\titleuk{#1}}
 \newcommand{\subtitulo}[1]{\subtitle{#1}}
 \newcommand{\dia}[1]{\day{#1}}
 \newcommand{\mes}[1]{\month{#1}}
@@ -603,7 +720,7 @@
 \newcommand{\universidade}[1]{\university{#1}}
 %\newcommand{\uni}[1]{\uni{#1}}
 %\newcommand{\CDD}[1]{\CDD{#1}}
-\newcommand{\membrodabanca}[2]{}
+\newcommand{\membrodabanca}[2]{\jurymember{#1}{#2}}
 \newcommand{\coordenador}[1]{\schoolhead{#1}}
 \newcommand{\banca}[1]{\jury{#1}}
 \newcommand{\curriculo}[1]{\resume{#1}}
@@ -612,13 +729,15 @@
 \newcommand{\chave}[1]{\key{#1}}
 \newcommand{\chaves}[1]{\keywords{#1}}
 \newcommand{\resumo}[1]{\abstract{#1}}
+\newcommand{\chavesuk}[1]{\keywordsuk{#1}}
+\newcommand{\resumouk}[1]{\abstractuk{#1}}
 \newcommand{\modotabelas}[1]{\tablesmode{#1}}
 \newcommand{\epigrafe}[1]{\epigraph{#1}}
 \newcommand{\epigrafeautor}[1]{\epigraphauthor{#1}}
 \newcommand{\epigrafelivro}[1]{\epigraphbook{#1}}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % cover
 %
@@ -883,6 +1002,7 @@
   \par%
 }
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % tables
@@ -911,6 +1031,7 @@
    }{}%
 }
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % epigraph
@@ -921,9 +1042,9 @@
   \markboth{\contentsname}{\contentsname}%
   \thispagestyle{empty}%
   \singlespacing\normalfont%
-  \vspace*{\stretch{1}}\par%
+  \vspace*{\stretch{1}}\par\indent%
   \hspace*{\stretch{2}}%
-  \begin{minipage}[c]{8.5cm}%
+  \begin{minipage}[c]{8.2cm}%
   \it \puc@epigraph%
   \end{minipage}%
   \hspace*{\stretch{1}}%
@@ -948,10 +1069,10 @@
   \columnseprule \z@%
   \columnsep 35\p@%
   \chapter*{\indexname}%
+  \addcontentsline{toc}{chapter}{\indexname}%
   \markboth{\indexname}{\indexname}
   \parskip\z@ \@plus .3\p@\relax%
   \let\item\@idxitem%
-  \addcontentsline{toc}{chapter}{\indexname}
 }{%
   \if@restonecol\onecolumn\else\clearpage\fi%
 }
@@ -975,6 +1096,7 @@
 % all front matter
 %
 \newcommand{\puc@showfrontmatter}{%
+  \pagestyle{empty}
 %  \puc@showcover%
   \puc@showfront%
   \puc@showjury%
