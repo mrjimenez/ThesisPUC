@@ -155,7 +155,7 @@
 \RequirePackage{eso-pic}
 
 % hyperlink and pdf bookmarks
-\RequirePackage[backref,dvipdfmx,colorlinks=false,bookmarksopen=true,breaklinks=true]{hyperref}
+\RequirePackage[backref,driverfallback=dvipdfmx,colorlinks=false,bookmarksopen=true,breaklinks=true]{hyperref}
 %linkcolor=blue,anchorcolor=black,citecolor=cyan,urlcolor=red,pagecolor=black,bookmarksnumbered=false,
 
 \selectlanguage{british}
