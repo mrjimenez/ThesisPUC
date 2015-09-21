@@ -120,9 +120,14 @@
 % fonts and symbols
 \RequirePackage{amsfonts}
 \RequirePackage[utf8]{inputenc}
+\RequirePackage{ifpdf}
 
 % graphics inclusion (in particular the PUC logo)
-\RequirePackage[dvipdfmx]{graphicx}
+\ifpdf
+	\RequirePackage[pdftex]{graphicx}
+\else
+	\RequirePackage[dvipdfmx]{graphicx}
+\fi
 
 % subfigure loaded here for spacing definition
 \RequirePackage[FIGBOTCAP,TABBOTCAP]{subfigure}
