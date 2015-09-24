@@ -1,0 +1,16 @@
+Notas diversas
+==============
+
+1. Sequencia de comandos que utilizei para criar um puc.eps que funcionasse
+   tanto com o latex quanto com o pdflatex:
+
+	ps2eps -H puc.ps
+	eps2eps puc.eps puc2.eps
+	mv puc.eps puc1.eps
+	mv puc2.eps puc.eps
+	rm puc1.eps
+	epstopdf puc.eps
+	mv puc.pdf puc-eps-converted-to.pdf
+
+   Infelizmente, esse EPS quebra o dvipdfmx, mas deve ser um bug neste último.
+
