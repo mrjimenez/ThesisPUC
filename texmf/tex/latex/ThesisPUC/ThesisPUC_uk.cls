@@ -139,7 +139,7 @@
 \RequirePackage[subfigure]{tocloft}
 
 % actively change margins
-\RequirePackage{chngpage}
+\RequirePackage{changepage}
 
 % line spacing
 \RequirePackage{setspace}
@@ -171,6 +171,28 @@
 %
 % page layout
 %
+\DeclareRobustCommand{\settext}[5]{%
+  \@ifmtarg{#1}{}{\setlength{\textheight}{#1}}%
+  \@ifmtarg{#2}{}{\setlength{\textwidth}{#2}}%
+  \@ifmtarg{#3}{}{\setlength{\evensidemargin}{#3}}%
+  \@ifmtarg{#4}{}{\setlength{\oddsidemargin}{#4}}%
+  \@ifmtarg{#5}{}{\setlength{\columnsep}{#5}}%
+  \ch@ngetext%
+}
+
+\DeclareRobustCommand{\setpage}[9]{%
+  \@ifmtarg{#1}{}{\setlength{\textheight}{#1}}%
+  \@ifmtarg{#2}{}{\setlength{\textwidth}{#2}}%
+  \@ifmtarg{#3}{}{\setlength{\evensidemargin}{#3}}%
+  \@ifmtarg{#4}{}{\setlength{\oddsidemargin}{#4}}%
+  \@ifmtarg{#5}{}{\setlength{\columnsep}{#5}}%
+  \ch@ngetext%
+  \@ifmtarg{#6}{}{\setlength{\topmargin}{#6}}%
+  \@ifmtarg{#7}{}{\setlength{\headheight}{#7}}%
+  \@ifmtarg{#8}{}{\setlength{\headsep}{#8}}%
+  \@ifmtarg{#9}{}{\setlength{\footskip}{#9}}%
+}
+
 \setlength{\parindent}{1cm}
 \setlength{\voffset}{-1in}
 \setlength{\topmargin}{20pt}
@@ -797,7 +819,7 @@
     \AddToShipoutPicture*{\put(0,0){\parbox[b][0.9\paperheight]{\paperwidth}{%
       \vfill\centering\includegraphics[width=0.8\paperwidth,height=0.8\paperheight,keepaspectratio]{\puc@watermark}\vfill}}}}%
     {}%
-  \puc@rightmargin{\includegraphics{puc.ps}}%
+  \puc@rightmargin{\includegraphics{puc}}%
   \vspace*{\stretch{1}}%
   \par%
   \puc@rightmargin{\large \arial \textbf{\puc@author} \normalsize}%
@@ -843,7 +865,7 @@
   \puc@setmargins@front%
   \thispagestyle{empty}%
   \singlespacing\arial%
-  \puc@rightmargin{\includegraphics{puc.ps}}%
+  \puc@rightmargin{\includegraphics{puc}}%
   \vspace*{\stretch{0.5}}%
   \par%
   \puc@rightmargin{\large \arial \textbf{\puc@author} \normalsize}%
