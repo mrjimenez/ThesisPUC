@@ -14,3 +14,44 @@ Notas diversas
 
    Infelizmente, esse EPS quebra o dvipdfmx, mas deve ser um bug neste último.
 
+--------------------------------------------------------------------------------
+
+2. Para fazer um "work around" do bug acima, recriei o puc.eps da seguinte forma:
+
+	# Com o puc.ps original
+	ps2eps -H puc.ps
+
+	Se a gente usar o eps2eps, vamos ficar com um arquivo compactado com
+LZW e não vai ser possível editar. Então, criei uma versão do eps2eps que usa
+o ghostscript direto e evita a compressão LZW:
+
+	myEpsToEps.sh puc.eps puc2.eps
+	
+	Editei o puc2.eps no gvim, mas assim que abrir tem que dar um comando
+para mudar o encoding do editor para latin1. Se não fizer isso, o editor vai
+estragar o arquivo na hora de salvar:
+
+	:edit ++enc=latin1 puc2.eps
+
+	Transladei o BoundingBox e o HiResBoundingBox de modo que o BoundingBox
+	fique com 0,0 no canto inferior esquerdo:
+
+...
+%BoundingBox: 167 609 427 670
+%HiResBoundingBox: 167.40 609.30 426.80 669.80
+%%BoundingBox: 0 0 260 61
+%%HiResBoundingBox: 0.40 0.30 259.80 60.80
+...
+%%BeginProlog
+-167 -609 translate
+...
+
+	Agora podemos usar o eps2eps pra criar um eps compactado:
+
+	eps2eps puc2.eps puc3.eps
+	mv puc3.eps puc.eps
+	epstopdf puc.eps
+	mv puc.pdf puc-eps-converted-to.pdf
+
+--------------------------------------------------------------------------------
+
