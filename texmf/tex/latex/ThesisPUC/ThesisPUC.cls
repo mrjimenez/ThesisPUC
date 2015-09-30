@@ -194,7 +194,7 @@
 \setlength{\voffset}{-1in}
 \setlength{\topmargin}{20pt}
 \setlength{\topskip}{0.001cm}
-\addtolength{\headheight}{2.5pt}
+\addtolength{\headheight}{3.7pt}
 
 \newcommand{\puc@setallmargins}[5]{%
  % declare length
