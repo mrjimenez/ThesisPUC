@@ -57,7 +57,7 @@
 \RequirePackage{ifthen}
 
 % hyphenation
-\RequirePackage[brazil,british]{babel}
+\RequirePackage[british,brazil]{babel}
 
 % PhD thesis or MsC dissertation
 \newboolean{puc@phd}
@@ -652,7 +652,7 @@
 \newcommand{\jury}[1]{\renewcommand{\puc@jury}{#1}}
 
 \newcommand{\puc@resume}{}
-\newcommand{\resume}[1]{\renewcommand{\puc@resume}{#1}}
+\newcommand{\resume}[1]{\renewcommand{\puc@resume}{\hyphenpenalty 10000#1}}
 
 \newboolean{hasdedication}
 \setboolean{hasdedication}{false}
@@ -811,7 +811,7 @@
   \puc@rightmargin{\arial \textbf{\ifthenelse{\boolean{puc@phd}}{Tese de Doutorado}{Disserta\c c\~ao de Mestrado}}}%
   \vspace*{\stretch{1.5}}%
   \par%
-  \puc@leftmargin{\arial%
+  \puc@leftmargin{\arial\hyphenpenalty 10000%
     \ifthenelse{\boolean{puc@phd}}%
       {Tese apresentada ao Programa de P\'{o}s--gradua\c{c}\~{a}o em \puc@program\ do Departamento de \puc@department\ da \puc@uni\ como requisito parcial para obten\c{c}\~{a}o Do t\'{i}tulo de Doutor em \puc@program}%
       {Disserta\c{c}\~{a}o apresentada como requisito parcial para obten\c{c}\~{a}o do grau de Mestre pelo Programa de P\'{o}s--gradua\c{c}\~{a}o em \puc@program\ do Departamento de \puc@department\ da \puc@uni}%
@@ -854,7 +854,7 @@
     \puc@rightmargin{\arial \textbf{\puc@subtitle} \relax} }%
   \vspace*{\stretch{1.5}}%
   \par%
-  \puc@leftmargin{\arial%
+  \puc@leftmargin{\arial\hyphenpenalty 10000%
   \ifthenelse{\boolean{puc@phd}}%
   {Tese apresentada ao Programa de P\'{o}s--gradua\c{c}\~{a}o em \puc@program\ do Departamento de \puc@department\ do \puc@school\ da \puc@uni\ como requisito parcial para obten\c{c}\~{a}o Do t\'{i}tulo de Doutor em \puc@program. }%
   {Disserta\c{c}\~{a}o apresentada como requisito parcial para obten\c{c}\~{a}o do grau de Mestre pelo Programa de P\'{o}s--gradua\c{c}\~{a}o em \puc@program\ do Departamento de \puc@department\ do \puc@school\ da \puc@uni. }%

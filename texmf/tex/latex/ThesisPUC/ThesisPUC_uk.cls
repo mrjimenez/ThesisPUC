@@ -668,7 +668,7 @@
 \newcommand{\jury}[1]{\renewcommand{\puc@jury}{#1}}
 
 \newcommand{\puc@resume}{}
-\newcommand{\resume}[1]{\renewcommand{\puc@resume}{#1}}
+\newcommand{\resume}[1]{\renewcommand{\puc@resume}{\hyphenpenalty 10000#1}}
 
 \newboolean{hasdedication}
 \setboolean{hasdedication}{false}
@@ -835,7 +835,7 @@
   \puc@rightmargin{\arial \textbf{\ifthenelse{\boolean{puc@phd}}{PhD Thesis}{MsC Thesis}}}%
   \vspace*{\stretch{1.5}}%
   \par%
-  \puc@leftmargin{\arial%
+  \puc@leftmargin{\arial\hyphenpenalty 10000%
     \ifthenelse{\boolean{puc@phd}}%
       {Thesis presented to the Post--graduate Program in \puc@program\ of the \puc@department\ Department, \puc@uni\ as partial fulfillment of the requirements for the degree of Doctor in Philosophy in \puc@program}%
       {Thesis presented to the Post--graduate Program in \puc@program\ of the \puc@department\ Department, \puc@uni\ as partial fulfillment of the requirements for the degree of Master in \puc@program}%
@@ -878,7 +878,7 @@
     \puc@rightmargin{\arial \textbf{\puc@subtitle} \relax} }%
   \vspace*{\stretch{1.5}}%
   \par%
-  \puc@leftmargin{\arial%
+  \puc@leftmargin{\arial\hyphenpenalty 10000%
   \ifthenelse{\boolean{puc@phd}}%
   {Thesis presented to the Post--graduate Program in \puc@program\ of the \puc@department\ Department, \puc@uni\ as partial fulfillment of the requirements for the degree of Doctor in Philosophy in \puc@program. }%
   {Thesis presented to the Post--graduate Program in \puc@program\ of the \puc@department\ Department, \puc@uni\ as partial fulfillment of the requirements for the degree of Master in \puc@program. }%
