@@ -1157,7 +1157,10 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \AtBeginDocument{%
-  \renewcommand{\bibname}{Refer\^{e}ncias}%
+  % A classe ``ThesisPUC'' usa \bibname, assim como as classes ``book'' e
+  % ``report'', e não \refname. Vou deixar \refname aqui apenas pela referencia.
+  \addto\captionsbrazil{\renewcommand{\bibname}{Referências}}
+  \addto\captionsbrazil{\renewcommand{\refname}{Referências}}
   \bibliographystyle{ThesisPUC}%
   \renewcommand{\key}[1]{#1. }
   \special{ pdf: docinfo << /Author (\puc@author) /Title (\puc@title) /Keywords (\puc@keywords) >> }%

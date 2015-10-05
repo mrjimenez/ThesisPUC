@@ -956,7 +956,15 @@ EXECUTE {initialize.longest.label}
 ITERATE {longest.label.pass}
 
 FUNCTION {begin.bib}
-{ "\begin{thebibliography}{"  longest.label  * "}  \addcontentsline{toc}{chapter}{Refer\^{e}ncias Bibliogr\'{a}ficas} \arial\markboth{\bibname}{\bibname} " * write$ newline$
+{
+	"\begin{thebibliography}{" longest.label * "}" *
+	write$ newline$ newline$
+	"\addcontentsline{toc}{chapter}{\bibname}"
+	write$ newline$
+	"\arial"
+	write$ newline$
+	"\markboth{\bibname}{\bibname}"
+	write$ newline$
 }
 
 EXECUTE {begin.bib}
@@ -966,8 +974,9 @@ EXECUTE {init.state.consts}
 ITERATE {call.type$}
 
 FUNCTION {end.bib}
-{ newline$
-  "\end{thebibliography}" write$ newline$
+{
+	newline$
+	"\end{thebibliography}" write$ newline$
 }
 
 EXECUTE {end.bib}
