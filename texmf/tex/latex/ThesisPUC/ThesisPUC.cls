@@ -57,7 +57,7 @@
 \RequirePackage{ifthen}
 
 % hyphenation
-\RequirePackage[british,brazil]{babel}
+\RequirePackage[british,main=brazil]{babel}
 
 % PhD thesis or MsC dissertation
 \newboolean{puc@phd}
